@@ -1,5 +1,4 @@
 <?php 
-	session_start();
 	include('config/db_connect.php');
 	$username = $password = '';
 	$errors = array('username'=>'', 'password'=>'');
@@ -20,8 +19,8 @@
 		if(empty($_POST['password'])){
 			$errors['password'] = 'Password cannot be empty <br />';
 		} else{
-			// $password = $_POST['password'];
-			// if(!preg_match('/^([a-zA-Z\s]+$/', $password)){
+			$password = $_POST['password'];
+			// if(!preg_match('/^[a-zA-Z\s]+$/', $password)){
 			// 	$errors['password'] = 'Password invalid';
 			// }
         }
@@ -32,14 +31,17 @@
 			$password = mysqli_real_escape_string($conn, $_POST['password']);
 			
 
-			$sql = "SELECT * FROM user_data WHERE username = '$username' AND password = '$password'";
+			$sql = "SELECT * FROM user_login_data WHERE username = '$username' AND password = '$password'";
 			$result = mysqli_query($conn,$sql);
-			$count = mysqli_fetch_array($result);
-
-			if($count == 1) {
+			$userData = mysqli_fetch_array($result);
+			$count = mysqli_num_rows($result);
+			print_r($count);
+			if($count == 1 && $userData['username'] == $username) {
+				session_start();
+				$_SESSION['user_id'] = $userData['id'];
 				$_SESSION['username'] = $username;
 				
-				header("location: index.php");
+				header("location: portal.php");
 			 }else {
 				$error = "Your Login Name or Password is invalid";
 			 }
