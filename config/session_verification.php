@@ -19,7 +19,7 @@ if($result && $count == 1){
     session_unset();
     // destroy the session
     session_destroy();
-    header("Location: ../login.php");
+    header("Location: ../portal/login.php");
 }
 
 ?>

@@ -1,7 +1,7 @@
 <?php 
       include('config/db_connect.php');
       include('Questionarray.php');
-      include('config/session_verfication.php');
+      include('config/session_verification.php');
       foreach($questions as $question) {              // question template :: array("Q1","Question comes here ?","male","female","Other"),
             if(isset($_POST[$question[0]])){       // if the question[0] matches with question[0] from which post request
                   echo $_POST['answer'];
@@ -13,11 +13,20 @@
                   #$sql3 = "INSERT INTO selected_option (user_id,$question_no) VALUES ('1','$answer')";
                   $sql3 = "update selected_option set $question_no = $answer where user_id = $user_id";//Updating data in mysql table
                   echo $question_no;
+                  echo "<br>" . $user_id . "<br>";
                   $result = mysqli_query($conn,$sql3);
-                  if($result){
-                        echo "Data stored succesfully ";
+                  if(isset($result)){
+                        echo "Data stored succesfully by updating existing data ";
                   }else{
                         echo  "Error: " . $sql3 . "<br>" . mysqli_error($conn);
+                        $sql3 = "INSERT INTO selected_option (user_id,$question_no) VALUES ('$user_id','$answer')";
+                        $result = mysqli_query($conn,$sql3);
+                        if($result){
+                              echo "data stored succesfully by creating new entry in table";
+                        }else{
+                              echo  "Error: " . $sql3 . "<br>" . mysqli_error($conn);
+                        }
+                        
                   }
             }
       }

@@ -62,7 +62,7 @@
 		<form class="white" action="login.php" method="POST">
 			<label>Username</label>
             <input type="text" name="username" value="<?php echo htmlspecialchars($username)?>">
-            <div class="red-text"><?php echo $errors['password']?></div>
+            <div class="red-text"><?php echo $errors['username']?></div>
 			<label>Password</label>
             <input type="password" name="password" value="<?php echo htmlspecialchars($password)?>">
             <div class="red-text"><?php echo $errors['password']?></div>
