@@ -1,4 +1,4 @@
 # Examportal
 ### issues to resolve:
-   after login if someone refreshes $post variable becomes undefined.
+   after login if someone refreshes $pack variable becomes undefined.
     
