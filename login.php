@@ -40,6 +40,7 @@
 				session_start();
 				$_SESSION['user_id'] = $userData['id'];
 				$_SESSION['username'] = $username;
+				$_SESSION['selected_q_np'];
 				
 				header("location: portal.php");
 			 }else {
