@@ -11,6 +11,14 @@ $userdata = mysqli_fetch_array($result);
 //
 print_r($userdata);
 //
+
+function logout(){
+    // remove all session variables
+    session_unset();
+    // destroy the session
+    session_destroy();
+    header("Location: ../login.php");
+}
 $count = mysqli_num_rows($result);
 if($result && $count == 1){
     
@@ -19,7 +27,9 @@ if($result && $count == 1){
     session_unset();
     // destroy the session
     session_destroy();
-    header("Location: ../portal/login.php");
+    header("Location: ../login.php");
 }
-
+if(isset($_POST['logout'])){
+    logout();
+}
 ?>
