@@ -12,17 +12,22 @@
         echo " variable not available made available";
     }else{
         echo 'variable available' . $_SESSION['selected_q_no'];
+        $_PACK = question_selection_frompallete($questions);
     }
     /////////////////////////
     if(isset($_POST['logout'])){
         $marks = calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn);
-        logout();
+        $_SESSION['marks'] = $marks;
+        header('Location: thnqu.php');
     }
     if(isset($_POST[$_SESSION['selected_q_no']])){
         $selected_question_no = $_SESSION['selected_q_no'];
         echo " in from if submitqution   " . $selected_question_no; #good we are getting the output
         echo $_POST['answer'];
         if(isset($_POST['answer'])){
+            $_SESSION['answer_of_question'][$selected_question_no] = $_POST['answer'];
+            print_r($_SESSION['answer_of_question']);
+            print_r($_SESSION['no_of_submited_qn']);
             cheacking_answer($conn,$answer_key);     
             if($selected_question_no >= $total_noof_questions){
                 $selected_question_no = 1;
@@ -48,7 +53,50 @@
 
 <!Doctype html>
 <html>
-    
+    <section>
+    <h1>Countdown</h1> 
+        <div id="clockdiv"> 
+        <div> 
+            <div class="smalltext">Time Left:</div> 
+            <span id="hour"></span>
+            <span id="minute"></span> 
+            <span id="second"></span> 
+        </div> 
+        
+        <p id="done">
+        </p> 
+        
+        <script> 
+        
+        var deadline = new Date("oct 29, 2020 20:30:00").getTime(); 
+        
+        var x = setInterval(function() { 
+        
+        var now = new Date().getTime(); 
+
+        var t = deadline - now; 
+        var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
+        var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
+        var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+        var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+        document.getElementById("hour").innerHTML =hours; 
+        document.getElementById("minute").innerHTML = minutes;  
+        document.getElementById("second").innerHTML =seconds;  
+        if (t < 0) { 
+                clearInterval(x); 
+                document.getElementById("done").innerHTML = "TIME IS UP!"; 
+                document.getElementById("hour").innerHTML ='0'; 
+                document.getElementById("minute").innerHTML ='0' ;  
+                document.getElementById("second").innerHTML = '0'; 
+                // <?php 
+                //     $marks = calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn);
+                //     $_SESSION['marks'] = $marks;
+                //     header('Location: thnqu.php');
+                // ?>            
+            } 
+        }, 1000); 
+        </script> 
+    </section>
     <section class="container grey-text">
 
         <h3>Question pallate </h3>
@@ -94,22 +142,3 @@
     </section>
 
 </html>
-
-
-<?php 
-//mysql commands
-#For adding table $sql = "CREATE TABLE test (
-                              // PersonID int,
-                              // LastName varchar(255),
-                              // FirstName varchar(255),
-                              // Address varchar(255),
-                              // City varchar(255))";
-                  #For adding column in a table $sql1 = "ALTER TABLE `test` ADD `extracolun` INT NOT NULL AFTER `City`"; #Code only for test
-                   #For creating foreign key link $sql2 = "ALTER TABLE `selected_option` ADD CONSTRAINT `user_linkto_option` FOREIGN KEY (`user_id`) REFERENCES `user_login_data`(`id`) ON DELETE RESTRICT ON UPDATE RESTRICT; "
-                  #for updating data $sql3 = update addingValueToExisting set GameScore = GameScore+10 where Id = 4;
-
-#$sql3 = "INSERT INTO selected_option (user_id,$question_no) VALUES ('1','$answer')";
-//testing algo = if(sel_opti - ans != 0){
-   # flag
-#} no of flags is equal to no of wrong answers 
-?>

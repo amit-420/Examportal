@@ -3,17 +3,33 @@
    function cheacking_answer($conn,$answer_key) {
     $answer = mysqli_real_escape_string($conn,$_POST['answer']);
     $question_no = $_SESSION['selected_q_no'];
-    if(($answer_key[$question_no - 1][1] - $answer) != 0){
-        $_SESSION['no_of_wrong_qn'] += 1;
-        echo "wrong option selected";
+    $previous_answer = $_SESSION['answer_of_question'][$question_no];
+    if(!isset($_SESSION['no_of_right_qn'])){ $_SESSION['no_of_right_qn'] = 0;}
+    if(in_array($question_no,$_SESSION['no_of_submited_qn'])){
+        if(($answer_key[$question_no - 1][1] - $previous_answer) == 0 and ($answer_key[$question_no - 1][1] - $answer) != 0){
+            $_SESSION['no_of_right_qn'] += 1;
+            echo "right option updated";
+        }elseif(($answer_key[$question_no - 1][1] - $previous_answer) != 0 and ($answer_key[$question_no - 1][1] - $answer) == 0){
+            $_SESSION['no_of_right_qn'] -= 1;
+            echo "wrong option updated";
+        }else{
+            echo "same as previous option selected";
+        }
+    }else{
+        if(($answer_key[$question_no - 1][1] - $answer) == 0){
+            $_SESSION['no_of_submited_qn'][] = $_SESSION['selected_q_no'];
+            $_SESSION['no_of_right_qn'] += 1;
+            echo "right option selected";
+        }
     }
+        
     
 }
 function calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn){
     $user_id = mysqli_real_escape_string($conn,$_SESSION['user_id']);
-    $no_of_wrong_qn = mysqli_real_escape_string($conn,$_SESSION['no_of_wrong_qn']);
+    $no_of_right_qn = mysqli_real_escape_string($conn,$_SESSION['no_of_right_qn']);
     
-    $marks = ($total_noof_questions - $no_of_wrong_qn) * $marks_of_each_qn;
+    $marks = $no_of_right_qn * $marks_of_each_qn;
     
     $sql3 = "update user_login_data set marks = $marks where id = $user_id";//Updating data in mysql table
     echo $marks;
@@ -43,6 +59,6 @@ function logout(){
     session_unset();
     // destroy the session
     session_destroy();
-    header("Location: login.php");
+    
 }      
 ?>

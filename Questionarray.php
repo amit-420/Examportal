@@ -6,6 +6,16 @@
             array("4","4orem ipsum dolor sit amet, or incididunt ut labore et dolore magna aliqua. ?","Male","Female","Other"),
         );
         $total_noof_questions = 4;
+        $answer_key = array(
+            array("1","2"),
+            array("2","3"),
+            array("3","2"),
+            array("4","2"),
+        );
+        $marks_of_each_qn = 4;
+        $_SESSION['answer_of _questions'] = array();
+
+
 
 
 

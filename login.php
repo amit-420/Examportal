@@ -41,6 +41,7 @@
 				$_SESSION['user_id'] = $userData['id'];
 				$_SESSION['username'] = $username;
 				$_SESSION['selected_q_np'];
+				$_SESSION['no_of_submited_qn'] = array();
 				
 				header("location: portal.php");
 			 }else {
