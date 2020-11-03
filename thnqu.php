@@ -1,12 +1,10 @@
 <?php 
-include('config/session_verification.php');
 include('functions.php');
 if(isset($_POST['login'])){
     logout();
     header('Location: login.php');
 }
-$fromsession = $_SESSION['marks'];
-$marks = $fromsession;
+$marks = $_COOKIE['marks'];
 ?>
 
 <!Doctype html>
