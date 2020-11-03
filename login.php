@@ -1,5 +1,7 @@
 <?php 
 	include('config/db_connect.php');
+	require('Questionarray.php');
+	
 	$username = $password = '';
 	$errors = array('username'=>'', 'password'=>'');
 
@@ -42,6 +44,12 @@
 				$_SESSION['username'] = $username;
 				$_SESSION['selected_q_np'];
 				$_SESSION['no_of_submited_qn'] = array();
+				#$_SESSION['school_name']
+				// if(!in_array($_SESSION['school_name'],$allowed_schools)){
+				// 	session_unset();
+				// 	session_destroy();
+				// 	header("Location: timetable.php");
+				// }
 				
 				header("location: portal.php");
 			 }else {
