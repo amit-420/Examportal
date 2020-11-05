@@ -29,7 +29,7 @@
   
 <script> 
   
-var deadline = new Date("oct 22, 2020 10:34:00").getTime(); 
+var deadline = new Date("nov 5, 2020 11:46:38").getTime(); 
   
 var x = setInterval(function() { 
   
@@ -38,7 +38,7 @@ var t = deadline - now;
 var days = Math.floor(t / (1000 * 60 * 60 * 24)); 
 var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
 var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
-var seconds = Math.floor((t % (1000 * 60)) / 1000); 
+var seconds = Math.floor((t % (1000 * 60)) / 1000);
 document.getElementById("day").innerHTML =days ; 
 document.getElementById("hour").innerHTML =hours; 
 document.getElementById("minute").innerHTML = minutes;  
@@ -46,11 +46,10 @@ document.getElementById("second").innerHTML =seconds;
 if (t < 0) { 
         clearInterval(x); 
         document.getElementById("done").innerHTML = "TIME IS UP!"; 
-        document.getElementById("day").innerHTML ='0'; 
-        document.getElementById("hour").innerHTML ='0'; 
-        document.getElementById("minute").innerHTML ='0' ;  
-        document.getElementById("second").innerHTML = '0'; } 
+        window.location.replace("lol.html")
+        } 
 }, 1000); 
+
 </script> 
 </body> 
 </html> 
