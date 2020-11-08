@@ -3,7 +3,6 @@
     include('Questionarray.php');
     include('config/session_verification.php');
     require('functions.php');
-    include('admin.php');
     #echo "start " . $_SESSION['selected_q_no'];
     $error_message = " ";
     if(!isset($_SESSION['selected_q_no'])){    
