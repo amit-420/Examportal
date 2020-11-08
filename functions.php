@@ -33,6 +33,7 @@
 }
 function calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn){
     $user_id = mysqli_real_escape_string($conn,$_SESSION['user_id']);
+    if(!isset($_SESSION['no_of_right_qn'])){ $_SESSION['no_of_right_qn'] = 0;}
     $no_of_right_qn = mysqli_real_escape_string($conn,$_SESSION['no_of_right_qn']);
     
     $marks = $no_of_right_qn * $marks_of_each_qn;

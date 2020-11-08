@@ -1,7 +1,7 @@
 <?php 
 	include('config/db_connect.php');
 	require('Questionarray.php');
-	
+	//echo $_COOKIE['marks'];
 	$username = $password = '';
 	$errors = array('username'=>'', 'password'=>'');
 
@@ -20,7 +20,7 @@
 		// check password
 		if(empty($_POST['password'])){
 			$errors['password'] = 'Password cannot be empty <br />';
-		} else{
+		}else{
 			$password = $_POST['password'];
 			// if(!preg_match('/^[a-zA-Z\s]+$/', $password)){
 			// 	$errors['password'] = 'Password invalid';
