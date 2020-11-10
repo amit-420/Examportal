@@ -105,11 +105,11 @@
         <p id="done"></p>
 
         <h3>Question pallate </h3>
-        <form method="portal.php" method="post"> 
-            <input type="submit" name="question_no_frompallete" value="1"/> 
-            <input type="submit" name="question_no_frompallete" value="2"/> 
-            <input type="submit" name="question_no_frompallete" value="3"/> 
-            <input type="submit" name="question_no_frompallete" value="4"/> 
+        <form action="portal.php" method="post"> 
+            <?php for($i=1;$i <= 4; $i++){?>
+            <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/> 
+            <?php }?>
+            
         </form>
         <?php
             $Q_no = $_SESSION['selected_question_details'][0];
