@@ -48,7 +48,7 @@ function calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_q
     
     //$sql3 = "update user_login_data set marks = '$marks' where mem_email = '$mem_email' ";
     //Updating data in mysql table
-    $sql3 = "UPDATE `user_login_data` SET `marks` = '$marks' WHERE `user_login_data`.`mem_email` = '$mem_email';";
+    $sql3 = "UPDATE `user_login_data` SET `marks` = '$marks', `exam_status`= '1' WHERE `user_login_data`.`mem_email` = '$mem_email';";
     $sql3 .= "UPDATE `$mem_clgname` SET `marks` = '$marks' WHERE `$mem_clgname`.`mem_email` = '$mem_email'"; 
     echo $marks;
     echo "<br>" . $mem_email . "<br>";

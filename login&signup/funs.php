@@ -22,7 +22,7 @@
 		//htmlMail($mem_email,$sub,$mem_name,"",$event);
 		
 		if(isset($result)){
-			//header("Location:login.php");
+			header("Location:login.php");
 			echo "Data stored succesfully by updating existing data" . mysqli_error($db_connect);
 		}else{
 			echo  "Error: " . "<br>" . mysqli_error($db_connect);
@@ -73,7 +73,7 @@
 		
 		
 		}else{
-			echo "Wrong password";
+			$error =  "Wrong password";
 		}
 	}
 
