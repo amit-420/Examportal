@@ -1,7 +1,35 @@
 <?php 
     session_start();
 	include("config/db.php");
+	include("config/confirmmail.php");
+	include("funs.php");
+	$error = '';
+	if (isset($_POST['signupButton'])) {
+		if($_POST['con_mem_pass'] == $_POST['mem_pass']){
+			
+									
+			$_SESSION['mem_email'] = $_POST['mem_email'];
+			$email= $_SESSION['mem_email'];
 	
+			$query_select = mysqli_query($db_connect, "SELECT * from user_login_data where mem_email = '$email' ");
+	
+			$checkpoint = mysqli_num_rows($query_select);
+	
+			echo $checkpoint;
+	
+			if ($checkpoint==0) {
+				account_creation($db_connect);
+										
+			}else{
+	
+				$error = "Email already exist.SignIN!";
+										
+			}
+									
+		}else{
+				$error = "Those passwords didn't match. Try again.";	
+		}
+	}
 
 
  ?>
@@ -27,7 +55,7 @@
 			
 
 
-       <form action="index.php">
+       <form action="login.php">
 	   		<button type="submit" name="loginButton" class="btn btn-primary btn-block" >Already a Member? SignIN!</button>
 
 	   </form>
@@ -35,7 +63,7 @@
 	   </p>
 	   <h2>Enter your details:</h2>
 
-			<form action="" method="POST">
+			<form action="signup.php" method="POST">
 			    
 				
 				<div class="form-group">
@@ -55,10 +83,19 @@
 					<input type="password" name="mem_pass" class="form-control" required>
 				</div>
 				<div class="form-group">
-					<label>College Name</label>
-					<input type="text" name="mem_clgname" class="form-control" required>
+					<label>Confirm Password</label>
+					<input type="password" name="con_mem_pass" class="form-control" required>
 				</div>
-
+				<div class="form-group">
+					<label for="mem_clgname">Select your College:</label>
+					<select name="mem_clgname" id="mem_clgname" required>
+						<option value="vnit">VNIT, Nagpur</option>
+						<option value="iiiit">IIIT, Nagpur</option>
+						<option value="vit">VIT, Nagpur</option>
+					</select>
+			
+				</div>
+				<div><?php echo $error; ?></div>
                 
 				<div class="form-group"> 
 					<button type="submit" name="signupButton" class="btn btn-primary btn-block" >Sign Up!</button>
@@ -77,42 +114,6 @@
 
 
 </div>
-<?php
-
-if (isset($_POST['signupButton'])) {
-                                
-    $_SESSION['mem_email'] = $_POST['mem_email'];
-    $email= $_SESSION['mem_email'];
-
-    $query_select = mysqli_query($db_connect, "SELECT * from users where mem_email = '$email' ");
-
-    $checkpoint = mysqli_num_rows($query_select);
-
-    if ($checkpoint==0) {
-        
-        
-        include "config/register.php";
-                                
-    }else{
-
-        $error = "Email already exist.SignIN!";
-                                
-    }
-                            
-
-    if (isset($error)) {
-                        
-        echo "<div class='alert alert-danger'>" . $error . "</div>";
-    }
-
-    
-        
-                                
-                        
-    
-}
-
-?>
 	
 </body>
 </html>
