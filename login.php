@@ -44,6 +44,8 @@
 				$_SESSION['username'] = $username;
 				$_SESSION['selected_q_np'];
 				$_SESSION['no_of_submited_qn'] = array();
+				$_SESSION['payment_status'] = TRUE;
+				$_SESSION['exam_status'] = FALSE;
 				#$_SESSION['school_name']
 				// if(!in_array($_SESSION['school_name'],$allowed_schools)){
 				// 	session_unset();
@@ -51,7 +53,7 @@
 				// 	header("Location: timetable.php");
 				// }
 				
-				header("location: portal.php");
+				header("location: rules.php");
 			 }else {
 				$error = "Your Login Name or Password is invalid";
 			 }

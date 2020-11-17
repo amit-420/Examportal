@@ -3,9 +3,9 @@ include('db_connect.php');
 
 session_start();// Starting Session
 // Storing Session
-$user_check = $_SESSION['username'];
+$user_check = $_SESSION['mem_email'];
 // SQL Query To Fetch Complete Information Of User
-$sql = "SELECT username from user_login_data where username = '$user_check'";
+$sql = "SELECT mem_email from user_login_data where mem_email = '$user_check'";
 $result = mysqli_query($conn, $sql);
 $userdata = mysqli_fetch_array($result);
 //

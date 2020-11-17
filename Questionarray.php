@@ -15,6 +15,7 @@
         date_default_timezone_set("Asia/Kolkata");
         $marks_of_each_qn = 4;
         $_SESSION['answer_of _questions'] = array();
+        $allowed_schools = array("vnit","vit","iiiit");
         
         $date=date_create("2020-11-04");
 
@@ -26,13 +27,13 @@
         echo date("d-m-y H:i:s", $now) . "<br>";
         $now = date("d-m-y H:i:s", $now);
         echo date_format($date,"d-m-y");
-        if($now > $todo){
-            $allowed_schools = array();
-            echo "allowed schools";
-         }
-         else{
-             echo " not allowed schools";
-         }
+        // if($now > $todo){
+            
+        //     echo "allowed schools";
+        //  }
+        //  else{
+        //      echo " not allowed schools";
+        //  }
 
 
 

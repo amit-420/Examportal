@@ -1,17 +1,14 @@
 <?php 
 include('config/db_connect.php');
 include('config/session_verification.php');
-
-
-
-
-
 if(isset($_POST['to_portal'])){
 
     header('Location: portal.php');
+}elseif (isset($_POST['loginpage'])){
+    session_unset();
+    session_destroy();
+    header('Location: login&signup/login.php');
 }
-
-
 ?>
 
 <!DOCTYPE HTML> 
@@ -32,7 +29,7 @@ if(isset($_POST['to_portal'])){
          nascetur ridiculus mus. In quis hendrerit mi, nec feugiat 
          sem. Donec a ipsum eu nibh venenatis commodo. Sed non 
          interdum diam, vel scelerisque mi. </p>
-         <form>
+         <form action="rules.php" method="POST">
          <input type="submit" name="to_portal" value="Start the Exam" >
          </form>
     </body>  
@@ -40,12 +37,15 @@ if(isset($_POST['to_portal'])){
         <body> 
         <h4 class="center">Your payment is overdue.</h4>
         <p>Click the button below to pay the fee and resume with exam</p>
-         <form>
-         <input type="submit" name="to_payment" value="Pay" >
+         <form action="rules.php" method="POST">
+         <input type="submit" name="loginpage" value="Pay" >
          </form>
     </body>  
     <?php } else if($_SESSION['payment_status'] == true and $_SESSION['exam_status'] == true){?>
         <h4 class="center">We appreciate your enthuciasm but You can give exam only once.</h4>
+        <form action="rules.php" method="POST">
+            <input type="submit" name="loginpage" value="Login Again" >
+        </form>
     <?php }?>
 
             

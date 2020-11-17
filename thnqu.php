@@ -6,7 +6,7 @@ include('config/session_verification.php');
 if(isset($_POST['login'])){
     setcookie("marks", $marks, time() - 7200, "/"); 
     logout();
-    header('Location: login.php');
+    header('Location: login&signup/login.php');
 }
 if(!isset($_COOKIE['marks'])){
     $marks = calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn);
