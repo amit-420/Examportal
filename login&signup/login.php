@@ -1,6 +1,7 @@
 <?php
 include("config/db.php");
 include("funs.php");
+$error = '';
 if (isset($_POST['loginButton'])) {
                                 
     $_SESSION['mem_email'] = $_POST['mem_email'];
@@ -55,7 +56,7 @@ if (isset($_POST['loginButton'])) {
 			<div class="form-group">
 					<button type="login" name="loginButton" class="btn btn-primary btn-block" >Login!</button>
 			</div>
-			<div class='alert alert-danger'><?php $error ?></div>			
+			<div class='alert alert-danger'><?php echo $error; ?></div>			
         </form>
 		<br><br>
 		<div class="forgotpass">

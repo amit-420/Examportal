@@ -5,7 +5,8 @@
     require('functions.php');
     #echo "start " . $_SESSION['selected_q_no'];
     $error_message = " ";
-    if(!isset($_SESSION['selected_q_no'])){    
+    if(!isset($_SESSION['selected_q_no'])){
+        //will Create the intial variable and fetch the question from questions array     
         $_SESSION['selected_q_no'] = 1;
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
         echo " variable not available made available";
@@ -14,11 +15,11 @@
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
     }
     /////////////////////////
-    if(isset($_POST['logout'])){
+    if(isset($_POST['logout'])){ 
+        //will submit marks and redirect it to thnqu.php
         $marks = calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn);
-        setcookie("marks", $marks, 0, "/"); 
+        setcookie("marks", $marks, 0, "/");
         header('Location: thnqu.php');
-        //logout();
     }
     if(isset($_POST[$_SESSION['selected_q_no']])){
         $selected_question_no = $_SESSION['selected_q_no'];
@@ -27,8 +28,8 @@
         if(isset($_POST['answer'])){
             //$_SESSION['answer_of_question'][$selected_question_no] = $_POST['answer'];
             //print_r($_SESSION['answer_of_question']);
-            print_r($_SESSION['no_of_submited_qn']);
-            cheacking_answer($conn,$answer_key);     
+            //print_r($_SESSION['no_of_submited_qn']);
+            cheacking_answer($conn,$answer_key);     // will check the submited answer and increase the no of right answer
             if($selected_question_no >= $total_noof_questions){
                 $selected_question_no = 1;
                 $_SESSION['selected_q_no'] = 1;
@@ -56,23 +57,16 @@
 <section>
 <script>
     "use strict";
-    // Code to check browser support   
- 
-    //var deadline = new Date("nov 7, 2020 12:46:00").getTime(); 
+    
     var nowa = new Date().getTime();
     
-    //localStorage.setItem("now", now);
-    //var check = localStorage.getItem('deadline');
-    
    if(localStorage.getItem('deadline') == null){
-        var deadline =  nowa + (1000 * 60 * 2);
+        var deadline =  nowa + (1000 * 60 * 60 * 2);
         localStorage.setItem('deadline',deadline)
-        //document.write(localStorage.getItem('deadline'));
-        //document.write("in if statment javascript");
+        // deadline is written only if localstorage is empty
     }
-    //document.write("javascript");
-    document.write(localStorage.getItem('deadline'));
-    //localStorage.clear();
+    
+    //document.write(localStorage.getItem('deadline'));
     
     function setTimer() { 
         var deadline = localStorage.getItem('deadline');
@@ -86,7 +80,7 @@
         document.getElementById("demo1").innerHTML = minutes;  
         document.getElementById("demo3").innerHTML = seconds;  
         
-        if (t < 0) { 
+        if (t <= 0) { 
                 clearInterval(x); 
                 document.getElementById("done").innerHTML = "TIME IS UP!"; 
                 window.location.replace("thnqu.php");
@@ -106,7 +100,7 @@
 
         <h3>Question pallate </h3>
         <form action="portal.php" method="post"> 
-            <?php for($i=1;$i <= 4; $i++){?>
+            <?php for($i=1;$i <= $total_noof_questions; $i++){?>
             <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/> 
             <?php }?>
             
@@ -118,7 +112,7 @@
             $option2 = $_SESSION['selected_question_details'][3];
             $option3 = $_SESSION['selected_question_details'][4];
             $checked1 = "";$checked2 = "";$checked3 = "";
-            echo "here  Q" . $Q_no;
+            echo "Q" . $Q_no;
             if(isset($_SESSION['answer_of_question'][$Q_no])){
                 $previous_answer = $_SESSION['answer_of_question'][$Q_no];
                 switch($previous_answer){
@@ -150,9 +144,9 @@
         <label for="option3"><?php echo $option3 ?></label> 
         
     <div class="center">
-        <!-- <input type="submit" name="<?php #echo $Q_no ?>" value="Submit" class="btn brand "> -->
         <input type="submit" name="<?php echo $Q_no ?>" value="Submit & next Qn"  class="btn brand ">
     </div>
+
     <h5><?php echo $error_message;?></h5>
     </form>
    

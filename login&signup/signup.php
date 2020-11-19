@@ -89,9 +89,9 @@
 				<div class="form-group">
 					<label for="mem_clgname">Select your College:</label>
 					<select name="mem_clgname" id="mem_clgname" required>
-						<option value="vnit">VNIT, Nagpur</option>
-						<option value="iiiit">IIIT, Nagpur</option>
-						<option value="vit">VIT, Nagpur</option>
+						<option value="vnit"> VNIT, Nagpur</option>
+						<option value="iiiit"> iiiT, Nagpur</option>
+						<option value="vit"> VIT, Nagpur</option>
 					</select>
 			
 				</div>
