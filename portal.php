@@ -9,9 +9,9 @@
         //will Create the intial variable and fetch the question from questions array
         $_SESSION['selected_q_no'] = 1;
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
-        echo " variable not available made available";
+        // echo " variable not available made available";
     }else{
-        echo 'variable available' . $_SESSION['selected_q_no'];
+        // echo 'variable available' . $_SESSION['selected_q_no'];
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
     }
     /////////////////////////
@@ -52,7 +52,7 @@
 ?>
 
 
-<!Doctype html>
+<!DOCTYPE html>
 <html>
 
 <head>
@@ -110,18 +110,14 @@
 </section>
     <body>
     <section class="container grey-text">
-        <span id="demo"></span> :
-        <span id="demo1"></span> :
-        <span id="demo3"></span>
-        <span id="done"></span>
 
-        <h3>Question pallate </h3>
-        <form action="portal.php" method="post">
-            <?php for($i=1;$i <= $total_noof_questions; $i++){?>
-            <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/>
-            <?php }?>
+        <p class="timer">
+          <span id="demo"></span> :
+          <span id="demo1"></span> :
+          <span id="demo3"></span>
+          <span id="done"></span>
+        </p>
 
-        </form>
         <?php
             $Q_no = $_SESSION['selected_question_details'][0];
             $question = $_SESSION['selected_question_details'][1];
@@ -129,7 +125,7 @@
             $option2 = $_SESSION['selected_question_details'][3];
             $option3 = $_SESSION['selected_question_details'][4];
             $checked1 = "";$checked2 = "";$checked3 = "";
-            echo "Q" . $Q_no;
+            // echo "Q" . $Q_no;
             if(isset($_SESSION['answer_of_question'][$Q_no])){
                 $previous_answer = $_SESSION['answer_of_question'][$Q_no];
                 switch($previous_answer){
@@ -147,30 +143,58 @@
                     break;
                     }
             }
-            ?>
-    <h4 class="question"><?php echo $question ?></h4>
-    <form class="white" action="portal.php" method="POST">
+        ?>
 
-        <input type="radio" id="option1" name="answer" value="1" <?php echo $checked1?>>
-        <label for="option1"><?php echo $option1?></label><br>
 
-        <input type="radio" id="option2" name="answer" value="2" <?php echo $checked2?>>
-        <label for="option"><?php echo $option2 ?></label><br>
+    <!-- Bootstrap grip for layout of question palette and options -->
 
-        <input type="radio" id="option3" name="answer" value="3" <?php echo $checked3?>>
-        <label for="option3"><?php echo $option3 ?></label>
+    <div class="container">
+      <div class="row">
 
-    <div class="center">
-        <input type="submit" name="<?php echo $Q_no ?>" value="Submit & next Qn"  class="btn brand ">
+        <div class="col-md-8">
+
+          <!-- Display question number and the question -->
+          <p class="question">
+            <strong><?php echo "Q. ". $Q_no . " " ?></strong><?php echo $question ?>
+          </p>
+          
+          <form class="white" action="portal.php" method="POST">
+
+              <input type="radio" id="option1" name="answer" value="1" <?php echo $checked1?>>
+              <label for="option1"><?php echo $option1?></label><br>
+
+              <input type="radio" id="option2" name="answer" value="2" <?php echo $checked2?>>
+              <label for="option"><?php echo $option2 ?></label><br>
+
+              <input type="radio" id="option3" name="answer" value="3" <?php echo $checked3?>>
+              <label for="option3"><?php echo $option3 ?></label>
+
+          <div class="">
+              <input type="submit" name="<?php echo $Q_no ?>" value="Save and Next Question"  class="btn btn-dark">
+          </div>
+
+          <h5><?php echo $error_message;?></h5>
+          </form>
+        </div>
+
+        <div class="col-md-4">
+          <h6>Question palette</h6>
+          <form action="portal.php" method="post">
+              <?php for($i=1;$i <= $total_noof_questions; $i++){?>
+              <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/>
+              <?php }?>
+          </form>
+        </div>
+
+      </div>
+
+
     </div>
-
-    <h5><?php echo $error_message;?></h5>
-    </form>
 
     </section>
     <section>
     <form action="portal.php" method="POST">
-        <input type="submit" name="logout" value="Finalsubmit" >
+        <input type="submit" class="btn btn-primary" name="logout" value="Submit">
     </form>
 
     </section>

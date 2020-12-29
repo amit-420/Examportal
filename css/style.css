@@ -1,12 +1,24 @@
 body
 {
   font-family: 'Montserrat', sans-serif;
+  padding: 7% 10%;
 }
 #rules-body
 {
-  padding: 7% 10%;
+
 }
 #rules-body .semi-bold
 {
   font-weight: 500;
+}
+
+.timer
+{
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.question
+{
+  font-size: 1.3rem; 
+  font-weight: 300;
 }
