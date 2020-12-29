@@ -154,10 +154,10 @@
         <div class="col-md-8">
 
           <!-- Display question number and the question -->
-          <p class="question">
+          <p class="question" style="font-size: 1.3rem;">
             <strong><?php echo "Q. ". $Q_no . " " ?></strong><?php echo $question ?>
           </p>
-          
+
           <form class="white" action="portal.php" method="POST">
 
               <input type="radio" id="option1" name="answer" value="1" <?php echo $checked1?>>
