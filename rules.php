@@ -30,8 +30,8 @@ if(isset($_POST['to_portal'])){
 </head>
     <?php
     if($_SESSION['payment_status'] == True and $_SESSION['exam_status'] == false) {?>
-    <body>
-        <h4 class="center">Exam Rules</h4>
+    <body id="rules-body">
+        <h1 class="">Exam Rules</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Pellentesque vitae tempus velit, sit amet condimentum lacus.
         In et mi sit amet augue auctor cursus. Ut ultrices, risus
@@ -44,8 +44,12 @@ if(isset($_POST['to_portal'])){
          nascetur ridiculus mus. In quis hendrerit mi, nec feugiat
          sem. Donec a ipsum eu nibh venenatis commodo. Sed non
          interdum diam, vel scelerisque mi. </p>
+
+         <p>
+           <strong class="semi-bold">Make sure you understand the instructions before starting the exam.</strong>
+         </p>
          <form action="rules.php" method="POST">
-         <input type="submit" name="to_portal" value="Start the Exam" >
+         <input class="btn btn-primary" type="submit" name="to_portal" value="Start the Exam" >
          </form>
     </body>
     <?php } else if($_SESSION['payment_status'] == false and $_SESSION['exam_status'] == false){?>

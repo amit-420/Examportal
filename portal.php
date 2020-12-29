@@ -1,4 +1,4 @@
-<?php 
+<?php
     include('config/db_connect.php');
     include('Questionarray.php');
     include('config/session_verification.php');
@@ -6,7 +6,7 @@
     #echo "start " . $_SESSION['selected_q_no'];
     $error_message = " ";
     if(!isset($_SESSION['selected_q_no'])){
-        //will Create the intial variable and fetch the question from questions array     
+        //will Create the intial variable and fetch the question from questions array
         $_SESSION['selected_q_no'] = 1;
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
         echo " variable not available made available";
@@ -15,7 +15,7 @@
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
     }
     /////////////////////////
-    if(isset($_POST['logout'])){ 
+    if(isset($_POST['logout'])){
         //will submit marks and redirect it to thnqu.php
         $marks = calculate_and_submit_marks($conn,$total_noof_questions,$marks_of_each_qn);
         setcookie("marks", $marks, 0, "/");
@@ -34,58 +34,75 @@
                 $selected_question_no = 1;
                 $_SESSION['selected_q_no'] = 1;
                 $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
-            }else{  
-                $_SESSION['selected_question_details'] = question_selection_bynextbtn($questions,$selected_question_no);                                       
+            }else{
+                $_SESSION['selected_question_details'] = question_selection_bynextbtn($questions,$selected_question_no);
                 $_SESSION['selected_q_no'] += 1;
             }
         }else{
             $error_message = "Please select any one option to record";
             $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
-        }        
+        }
     }elseif(isset($_POST['question_no_frompallete'])){
         $_SESSION['selected_q_no'] = $_POST['question_no_frompallete'];
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
         echo "in elseif statement";
     }
-    
-		
+
+
 ?>
 
 
 <!Doctype html>
 <html>
+
+<head>
+  <meta charset="utf-8" />
+  <title>Instructions</title>
+
+  <!-- Bootstrap -->
+  <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.0/css/bootstrap.min.css" integrity="sha384-9aIt2nRpC12Uk9gS9baDl411NQApFmC26EwAOH8WgZl5MYYxFfc+NcPb1dKGj7Sk" crossorigin="anonymous">
+
+  <!-- Google font -->
+  <link rel="preconnect" href="https://fonts.gstatic.com">
+  <link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@100;300;400;500;600;800&display=swap" rel="stylesheet">
+
+  <link rel="stylesheet" href="css/style.css" />
+
+</head>
+
+
 <section>
 <script>
     "use strict";
-    
+
     var nowa = new Date().getTime();
-    
+
    if(localStorage.getItem('deadline') == null){
         var deadline =  nowa + (1000 * 60 * 60 * 2);
         localStorage.setItem('deadline',deadline)
         // deadline is written only if localstorage is empty
     }
-    
+
     //document.write(localStorage.getItem('deadline'));
-    
-    function setTimer() { 
+
+    function setTimer() {
         var deadline = localStorage.getItem('deadline');
-        var now = new Date().getTime(); 
+        var now = new Date().getTime();
         //var t = deadline - now;
         var t = deadline - now;
-        var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60)); 
-        var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60)); 
+        var hours = Math.floor((t%(1000 * 60 * 60 * 24))/(1000 * 60 * 60));
+        var minutes = Math.floor((t % (1000 * 60 * 60)) / (1000 * 60));
         var seconds = Math.floor((t % (1000 * 60)) / 1000);
-        document.getElementById("demo").innerHTML = hours; 
-        document.getElementById("demo1").innerHTML = minutes;  
-        document.getElementById("demo3").innerHTML = seconds;  
-        
-        if (t <= 0) { 
-                clearInterval(x); 
-                document.getElementById("done").innerHTML = "TIME IS UP!"; 
+        document.getElementById("demo").innerHTML = hours;
+        document.getElementById("demo1").innerHTML = minutes;
+        document.getElementById("demo3").innerHTML = seconds;
+
+        if (t <= 0) {
+                clearInterval(x);
+                document.getElementById("done").innerHTML = "TIME IS UP!";
                 window.location.replace("thnqu.php");
                 localStorage.clear();
-                } 
+                }
         }
     var x = setInterval(function() { setTimer(); },1);
 
@@ -93,17 +110,17 @@
 </section>
     <body>
     <section class="container grey-text">
-        <p id="demo"></p>
-        <p id="demo1"></p>
-        <p id="demo3"></p>
-        <p id="done"></p>
+        <span id="demo"></span> :
+        <span id="demo1"></span> :
+        <span id="demo3"></span>
+        <span id="done"></span>
 
         <h3>Question pallate </h3>
-        <form action="portal.php" method="post"> 
+        <form action="portal.php" method="post">
             <?php for($i=1;$i <= $total_noof_questions; $i++){?>
-            <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/> 
+            <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/>
             <?php }?>
-            
+
         </form>
         <?php
             $Q_no = $_SESSION['selected_question_details'][0];
@@ -131,25 +148,25 @@
                     }
             }
             ?>
-    <h4 class="center"><?php echo $question ?></h4>
+    <h4 class="question"><?php echo $question ?></h4>
     <form class="white" action="portal.php" method="POST">
-        
+
         <input type="radio" id="option1" name="answer" value="1" <?php echo $checked1?>>
         <label for="option1"><?php echo $option1?></label><br>
-        
+
         <input type="radio" id="option2" name="answer" value="2" <?php echo $checked2?>>
         <label for="option"><?php echo $option2 ?></label><br>
-        
+
         <input type="radio" id="option3" name="answer" value="3" <?php echo $checked3?>>
-        <label for="option3"><?php echo $option3 ?></label> 
-        
+        <label for="option3"><?php echo $option3 ?></label>
+
     <div class="center">
         <input type="submit" name="<?php echo $Q_no ?>" value="Submit & next Qn"  class="btn brand ">
     </div>
 
     <h5><?php echo $error_message;?></h5>
     </form>
-   
+
     </section>
     <section>
     <form action="portal.php" method="POST">
@@ -159,5 +176,5 @@
     </section>
 
     </body>
-    
+
 </html>
