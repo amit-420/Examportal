@@ -111,8 +111,15 @@
 </section>
 
 
-<body>
-    <section class="container grey-text">
+<body style="padding-top: 2%;">
+
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+      <img src="images/log.png" alt="NEO logo" style="height: 70px;"/>
+    </a>
+
+  </nav>
+    <section class="container grey-text pt-4">
 
         <p class="timer">
           <span id="demo"></span> :
@@ -167,7 +174,7 @@
               <label for="option1"><?php echo $option1?></label><br>
 
               <input type="radio" id="option2" name="answer" value="2" <?php echo $checked2?>>
-              <label for="option"><?php echo $option2 ?></label><br>
+              <label for="option2"><?php echo $option2 ?></label><br>
 
               <input type="radio" id="option3" name="answer" value="3" <?php echo $checked3?>>
               <label for="option3"><?php echo $option3 ?></label>
