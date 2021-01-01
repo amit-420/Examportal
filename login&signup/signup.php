@@ -1,4 +1,8 @@
-<?php 
+
+
+<!-- DEEPAK please remove the image from this page as well as the login page -->
+
+<?php
     session_start();
 	include("config/db.php");
 	include("config/confirmmail.php");
@@ -6,28 +10,28 @@
 	$error = '';
 	if (isset($_POST['signupButton'])) {
 		if($_POST['con_mem_pass'] == $_POST['mem_pass']){
-			
-									
+
+
 			$_SESSION['mem_email'] = $_POST['mem_email'];
 			$email= $_SESSION['mem_email'];
-	
+
 			$query_select = mysqli_query($db_connect, "SELECT * from user_login_data where mem_email = '$email' ");
-	
+
 			$checkpoint = mysqli_num_rows($query_select);
-	
+
 			echo $checkpoint;
-	
+
 			if ($checkpoint==0) {
 				account_creation($db_connect);
-										
+
 			}else{
-	
+
 				$error = "Email already exist.SignIN!";
-										
+
 			}
-									
+
 		}else{
-				$error = "Those passwords didn't match. Try again.";	
+				$error = "Those passwords didn't match. Try again.";
 		}
 	}
 
@@ -47,6 +51,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+      <img src="../images/log.png" alt="NEO logo" style="height: 70px;"/>
+    </a>
+
+  </nav>
 
 <!-- Signup Design start  -->
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">
@@ -63,8 +73,8 @@
               </div>
               <p class="login-card-description">Create Account</p>
 				<form action="signup.php" method="POST">
-			    
-				
+
+
 				<div class="form-group">
 					<label>Full Name</label>
 					<input type="text" name="mem_name" class="form-control" required>
@@ -92,14 +102,14 @@
 						<option value="iiiit"> iiiT, Nagpur</option>
 						<option value="vit"> VIT, Nagpur</option>
 					</select>
-			
+
 				</div>
 				<div><?php echo $error; ?></div>
-                
-				<div class="form-group"> 
+
+				<div class="form-group">
 					<button type="submit" name="signupButton" class="btn btn-block login-btn mb-4" >Sign Up!</button>
 				</div>
-					
+
 
 
 			</form>
@@ -115,7 +125,7 @@
   </main>
 <!-- signup design end  -->
 <!-- <div class="container">
-	
+
 	<div class="jumbotron">
 		<h1>Create your account</h1>
 	</div>
@@ -124,8 +134,8 @@
 
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-			
-			
+
+
 
 
        <form action="login.php">
@@ -137,8 +147,8 @@
 	   <h2>Enter your details:</h2>
 
 			<form action="signup.php" method="POST">
-			    
-				
+
+
 				<div class="form-group">
 					<label>Full Name</label>
 					<input type="text" name="mem_name" class="form-control" required>
@@ -166,14 +176,14 @@
 						<option value="iiiit"> iiiT, Nagpur</option>
 						<option value="vit"> VIT, Nagpur</option>
 					</select>
-			
+
 				</div>
 				<div><?php echo $error; ?></div>
-                
-				<div class="form-group"> 
+
+				<div class="form-group">
 					<button type="submit" name="signupButton" class="btn btn-primary btn-block" >Sign Up!</button>
 				</div>
-					
+
 
 
 			</form>

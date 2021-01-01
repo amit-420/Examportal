@@ -3,24 +3,24 @@ include("config/db.php");
 include("funs.php");
 $error = '';
 if (isset($_POST['loginButton'])) {
-                                
+
     $_SESSION['mem_email'] = $_POST['mem_email'];
     $email= $_SESSION['mem_email'];
 
     $query_select = mysqli_query($db_connect, "SELECT * from user_login_data where mem_email = '$email' ");
 
 	$checkpoint = mysqli_num_rows($query_select);
-	
+
 	echo $checkpoint;
 
     if ($checkpoint>0) {
-		
+
 		login_func($db_connect);
-		
+
     }else{
 
         $error = "Email doesn't exist, Signup!";
-                                
+
     }
 }
 ?>
@@ -38,6 +38,12 @@ if (isset($_POST['loginButton'])) {
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+      <img src="../images/log.png" alt="NEO logo" style="height: 70px;"/>
+    </a>
+
+  </nav>
 
 <!-- Styling of page start  -->
 
@@ -67,7 +73,7 @@ if (isset($_POST['loginButton'])) {
 				  <button name="login" name="loginButton" class="btn btn-block login-btn mb-4" >Login</button>
 				  </div>
 				</form> -->
-				
+
 				<form action="login.php" method="POST">
             <div class="form-group">
 					<label>Email</label>
@@ -81,7 +87,7 @@ if (isset($_POST['loginButton'])) {
 			<div class="form-group">
 					<button type="login" name="loginButton" class="btn btn-block login-btn mb-4" >Login!</button>
 			</div>
-					
+
         </form>
                 <a href="forgotpass.php" name="forgotButton" class="forgot-password-link">Forgot password?</a>
                 <p class="login-card-footer-text">Don't have an account? <a href="signup.php" name="" class="text-reset">Register here</a></p>
@@ -98,7 +104,7 @@ if (isset($_POST['loginButton'])) {
 
 <!-- Styling of page end -->
 <!-- <div class="container">
-	
+
 	<div class="jumbotron">
 		<h1>LOGIN</h1>
 	</div>
@@ -107,7 +113,7 @@ if (isset($_POST['loginButton'])) {
 
 		<div class="col-md-4"></div>
 		<div class="col-md-4">
-			
+
         <form action="login.php" method="POST">
             <div class="form-group">
 					<label>Email</label>
@@ -121,7 +127,7 @@ if (isset($_POST['loginButton'])) {
 			<div class="form-group">
 					<button type="login" name="loginButton" class="btn btn-primary btn-block" >Login!</button>
 			</div>
-					
+
         </form>
 		<br><br>
 		<div class="forgotpass">
@@ -129,16 +135,16 @@ if (isset($_POST['loginButton'])) {
 					<button type="Submit" name="forgotButton" class="btn btn-primary btn-block" >Forgot Password</button>
         		</form>
 			</div><br>
-             
+
         <div class="signup">
 		<form action="signup.php">
 				<button type="submit" name="notsignupButton" class="btn btn-primary btn-block" >Not a member? Sign Up!</button>
         </form>
 		</div> -->
 
-	
 
-	
+
+
 
 <!-- Jquery -->
 <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js" integrity="sha384-J6qa4849blE2+poT4WnyKhv5vZF5SrPo0iEjwBvKU7imGFAV0wwj1yYfoRSJoZ+n" crossorigin="anonymous"></script>
@@ -146,7 +152,4 @@ if (isset($_POST['loginButton'])) {
 <script src="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js" integrity="sha384-wfSDF2E50Y2D1uUdj0O3uMBJnjuUD4Ih7YwaYd1iqfktj0Uod8GCExl3Og8ifwB6" crossorigin="anonymous"></script>
 
 </body>
-</html>            
-
-
-
+</html>

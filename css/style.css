@@ -1,0 +1,21 @@
+body
+{
+  font-family: 'Montserrat', sans-serif;
+  padding: 2% 10% 7%;
+}
+
+#rules-body .semi-bold
+{
+  font-weight: 500;
+}
+
+.timer
+{
+  font-size: 1.5rem;
+  font-weight: 500;
+}
+.question-number
+{
+  text-align: center;
+  font-weight: 700;
+}
