@@ -35,10 +35,16 @@ if(!isset($_COOKIE['marks'])){
           localStorage.clear();
       </Script>
     </head>
-    <section>
+    <body>
+      <nav class="navbar navbar-expand-lg navbar-light">
+        <a class="navbar-brand" href="#">
+          <img src="images/log.png" alt="NEO logo" style="height: 70px;"/>
+        </a>
+
+      </nav>
         <h4 class="text-center"><?php echo 'You have earned total ' . $marks . '    marks'?></h4>
         <form action="thnqu.php" method="POST" class="text-center pt-4">
             <input type="submit" class="btn btn-primary" name="login" value="Login Again" >
         </form>
-    </section>
+    </body>
 </html>

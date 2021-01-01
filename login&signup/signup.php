@@ -51,6 +51,12 @@
 	<link href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;700&display=swap" rel="stylesheet">
 </head>
 <body>
+  <nav class="navbar navbar-expand-lg navbar-light">
+    <a class="navbar-brand" href="#">
+      <img src="../images/log.png" alt="NEO logo" style="height: 70px;"/>
+    </a>
+
+  </nav>
 
 <!-- Signup Design start  -->
 <main class="d-flex align-items-center min-vh-100 py-3 py-md-0">

@@ -31,7 +31,13 @@ if(isset($_POST['to_portal'])){
     <?php
     if($_SESSION['payment_status'] == True and $_SESSION['exam_status'] == false) {?>
     <body id="rules-body">
-        <h1 class="">Exam Rules</h1>
+      <nav class="navbar navbar-expand-lg navbar-light ">
+        <a class="navbar-brand" href="#">
+          <img src="images/log.png" alt="NEO logo" style="height: 70px;"/>
+        </a>
+
+      </nav>
+        <h1 class=" pt-4">Exam Rules</h1>
         <p>Lorem ipsum dolor sit amet, consectetur adipiscing elit.
         Pellentesque vitae tempus velit, sit amet condimentum lacus.
         In et mi sit amet augue auctor cursus. Ut ultrices, risus
@@ -54,17 +60,33 @@ if(isset($_POST['to_portal'])){
     </body>
     <?php } else if($_SESSION['payment_status'] == false and $_SESSION['exam_status'] == false){?>
         <body>
-        <h4 class="text-center">Your payment is overdue.</h4>
+          <nav class="navbar navbar-expand-lg navbar-light ">
+            <a class="navbar-brand" href="#">
+              <img src="images/log.png" alt="NEO logo" style="height: 70px;"/>
+            </a>
+
+          </nav>
+        <h4 class="text-center pt-4">Your payment is overdue.</h4>
         <p class="text-center">Click the button below to pay the fee and resume with exam</p>
          <form action="rules.php" method="POST" class="text-center">
          <input type="submit" class="btn btn-primary" name="loginpage" value="Pay" >
          </form>
     </body>
     <?php } else if($_SESSION['payment_status'] == true and $_SESSION['exam_status'] == true){?>
-        <h4 class="text-center">We appreciate your enthusiasm but you can give the exam only once.</h4>
-        <form action="rules.php" class="text-center pt-4" method="POST">
-            <input type="submit" class="btn btn-primary" name="loginpage" value="Login Again" >
-        </form>
+      <body>
+
+        <nav class="navbar navbar-expand-lg navbar-light ">
+          <a class="navbar-brand" href="#">
+            <img src="images/log.png" alt="NEO logo" style="height: 70px;"/>
+          </a>
+
+        </nav>
+          <h4 class="text-center pt-4">We appreciate your enthusiasm but you can give the exam only once.</h4>
+          <form action="rules.php" class="text-center pt-4" method="POST">
+              <input type="submit" class="btn btn-primary" name="loginpage" value="Login Again" >
+          </form>
+
+      </body>
     <?php }?>
 
 

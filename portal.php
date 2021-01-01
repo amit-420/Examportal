@@ -111,7 +111,7 @@
 </section>
 
 
-<body style="padding-top: 2%;">
+<body>
 
   <nav class="navbar navbar-expand-lg navbar-light">
     <a class="navbar-brand" href="#">
@@ -119,6 +119,7 @@
     </a>
 
   </nav>
+
     <section class="container grey-text pt-4">
 
         <p class="timer">
