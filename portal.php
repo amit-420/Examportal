@@ -23,8 +23,8 @@
     }
     if(isset($_POST[$_SESSION['selected_q_no']])){
         $selected_question_no = $_SESSION['selected_q_no'];
-        echo " in from if submitqution   " . $selected_question_no; #good we are getting the output
-        echo $_POST['answer'];
+        // echo " in from if submitqution   " . $selected_question_no; #good we are getting the output
+        // echo $_POST['answer'];
         if(isset($_POST['answer'])){
             //$_SESSION['answer_of_question'][$selected_question_no] = $_POST['answer'];
             //print_r($_SESSION['answer_of_question']);
@@ -45,7 +45,7 @@
     }elseif(isset($_POST['question_no_frompallete'])){
         $_SESSION['selected_q_no'] = $_POST['question_no_frompallete'];
         $_SESSION['selected_question_details'] = question_selection_frompallete($questions);
-        echo "in elseif statement";
+        // echo "in elseif statement";
     }
 
 
@@ -53,7 +53,7 @@
 
 
 <!DOCTYPE html>
-<html>
+<html lang="en">
 
 <head>
   <meta charset="utf-8" />
@@ -72,7 +72,8 @@
 
 
 <section>
-<script>
+
+  <script>
     "use strict";
 
     var nowa = new Date().getTime();
@@ -108,7 +109,9 @@
 
     </script>
 </section>
-    <body>
+
+
+<body>
     <section class="container grey-text">
 
         <p class="timer">
@@ -146,7 +149,7 @@
         ?>
 
 
-    <!-- Bootstrap grip for layout of question palette and options -->
+    <!-- Bootstrap grid for layout of question palette and options -->
 
     <div class="container">
       <div class="row">
@@ -154,7 +157,7 @@
         <div class="col-md-8">
 
           <!-- Display question number and the question -->
-          <p class="question" style="font-size: 1.3rem;">
+          <p class="question-text" style="font-size: 1.3rem;">
             <strong><?php echo "Q. ". $Q_no . " " ?></strong><?php echo $question ?>
           </p>
 
@@ -169,33 +172,40 @@
               <input type="radio" id="option3" name="answer" value="3" <?php echo $checked3?>>
               <label for="option3"><?php echo $option3 ?></label>
 
-          <div class="">
-              <input type="submit" name="<?php echo $Q_no ?>" value="Save and Next Question"  class="btn btn-dark">
-          </div>
+              <div class="col-md-6 pl-0">
+                <input type="submit" name="<?php echo $Q_no ?>" value="Save and Next Question"  class="btn btn-dark">
+              </div>
 
           <h5><?php echo $error_message;?></h5>
           </form>
         </div>
 
-        <div class="col-md-4">
+        <div class="col-md-4 text-right pr-0">
           <h6>Question palette</h6>
+          <div class="row">
+
           <form action="portal.php" method="post">
-              <?php for($i=1;$i <= $total_noof_questions; $i++){?>
-              <input type="submit" name="question_no_frompallete" value="<?php echo $i ?>"/>
-              <?php }?>
+              <?php for($i=1;$i <= $total_noof_questions; $i++)
+              {?>
+              <input type="submit" class="col-md-2" name="question_no_frompallete" value="<?php echo $i ?>"/>
+              <?php
+              }?>
           </form>
+          </div>
         </div>
 
       </div>
 
 
-    </div>
+      <div class="row justify-content-end">
+        <div class="col-md-6 text-right">
+          <form action="portal.php" method="POST">
+            <input type="submit" class="btn btn-primary" name="logout" value="Submit">
+          </form>
+        </div>
 
-    </section>
-    <section>
-    <form action="portal.php" method="POST">
-        <input type="submit" class="btn btn-primary" name="logout" value="Submit">
-    </form>
+      </div>
+
 
     </section>
 

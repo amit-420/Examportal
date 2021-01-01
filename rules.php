@@ -54,16 +54,16 @@ if(isset($_POST['to_portal'])){
     </body>
     <?php } else if($_SESSION['payment_status'] == false and $_SESSION['exam_status'] == false){?>
         <body>
-        <h4 class="center">Your payment is overdue.</h4>
-        <p>Click the button below to pay the fee and resume with exam</p>
-         <form action="rules.php" method="POST">
-         <input type="submit" name="loginpage" value="Pay" >
+        <h4 class="text-center">Your payment is overdue.</h4>
+        <p class="text-center">Click the button below to pay the fee and resume with exam</p>
+         <form action="rules.php" method="POST" class="text-center">
+         <input type="submit" class="btn btn-primary" name="loginpage" value="Pay" >
          </form>
     </body>
     <?php } else if($_SESSION['payment_status'] == true and $_SESSION['exam_status'] == true){?>
-        <h4 class="center">We appreciate your enthuciasm but You can give exam only once.</h4>
-        <form action="rules.php" method="POST">
-            <input type="submit" name="loginpage" value="Login Again" >
+        <h4 class="text-center">We appreciate your enthusiasm but you can give the exam only once.</h4>
+        <form action="rules.php" class="text-center pt-4" method="POST">
+            <input type="submit" class="btn btn-primary" name="loginpage" value="Login Again" >
         </form>
     <?php }?>
 

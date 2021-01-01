@@ -3,21 +3,19 @@ body
   font-family: 'Montserrat', sans-serif;
   padding: 7% 10%;
 }
-#rules-body
-{
 
-}
 #rules-body .semi-bold
 {
   font-weight: 500;
 }
-.question
-{
-  font-size: 1.3rem;
-  font-weight: 300;
-}
+
 .timer
 {
   font-size: 1.5rem;
   font-weight: 500;
+}
+.question-number
+{
+  text-align: center;
+  font-weight: 700;
 }
