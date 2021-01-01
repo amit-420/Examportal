@@ -52,7 +52,7 @@ if (isset($_POST['changepassButton'])) {
     $mem_conf_pass=$_POST["mem_conf_pass"];
     $email=$_SESSION['mem_otp_email'];
     if($mem_new_pass == $mem_conf_pass){
-        $select=mysqli_query($db_connect, "SELECT  mem_email,mem_pass from user_login_data where mem_email='$email'") ;
+        $select = mysqli_query($db_connect, "SELECT  mem_email,mem_pass from user_login_data where mem_email='$email'") ;
             if(mysqli_num_rows($select)==1){
                 
                 $select=mysqli_query($db_connect,"UPDATE user_login_data SET mem_pass=sha1('$mem_new_pass') where mem_email='$email'");
