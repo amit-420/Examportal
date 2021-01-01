@@ -61,7 +61,7 @@
     var nowa = new Date().getTime();
     
    if(localStorage.getItem('deadline') == null){
-        var deadline =  nowa + (1000 * 60 * 60 * 2);
+        var deadline =  nowa + (1000 * 60 *2 );
         localStorage.setItem('deadline',deadline)
         // deadline is written only if localstorage is empty
     }
@@ -111,6 +111,7 @@
             $option1 = $_SESSION['selected_question_details'][2];
             $option2 = $_SESSION['selected_question_details'][3];
             $option3 = $_SESSION['selected_question_details'][4];
+            $image_url = $_SESSION['selected_question_details'][5];
             $checked1 = "";$checked2 = "";$checked3 = "";
             echo "Q" . $Q_no;
             if(isset($_SESSION['answer_of_question'][$Q_no])){
@@ -132,13 +133,14 @@
             }
             ?>
     <h4 class="center"><?php echo $question ?></h4>
+    <?php if($image_url != ""){ ?><img src=<?php echo $image_url ?> alt="Stickman" width="200" height="200"> <?php }else{ } ?>
     <form class="white" action="portal.php" method="POST">
         
         <input type="radio" id="option1" name="answer" value="1" <?php echo $checked1?>>
         <label for="option1"><?php echo $option1?></label><br>
         
         <input type="radio" id="option2" name="answer" value="2" <?php echo $checked2?>>
-        <label for="option"><?php echo $option2 ?></label><br>
+        <label for="option2"><?php echo $option2 ?></label><br>
         
         <input type="radio" id="option3" name="answer" value="3" <?php echo $checked3?>>
         <label for="option3"><?php echo $option3 ?></label> 
